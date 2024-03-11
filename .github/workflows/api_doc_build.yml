@@ -37,7 +37,7 @@ jobs:
 
       - name: Merge master
         working-directory: langchain
-        run: | 
+        run: |
           git remote add upstream https://github.com/langchain-ai/langchain.git
           git fetch upstream master
           git merge upstream/master -m "Merge master" --allow-unrelated-histories -X theirs
