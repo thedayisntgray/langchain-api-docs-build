@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: bagatur/api_docs_build
+          ref: master
           path: langchain
       - uses: actions/checkout@v4
         with:
