@@ -452,7 +452,8 @@
 <span class="sd">    Args:</span>
 <span class="sd">        function: Either a dictionary, a pydantic.BaseModel class, or a Python function.</span>
 <span class="sd">            If a dictionary is passed in, it is assumed to already be a valid OpenAI</span>
-<span class="sd">            function.</span>
+<span class="sd">            function or a JSON schema with top-level &#39;title&#39; and &#39;description&#39; keys</span>
+<span class="sd">            specified.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A dict version of the passed in function which is compatible with the</span>
@@ -460,8 +461,21 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">langchain_core.tools</span> <span class="kn">import</span> <span class="n">BaseTool</span>
 
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="c1"># already in OpenAI function format</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span>
+        <span class="n">k</span> <span class="ow">in</span> <span class="n">function</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="s2">&quot;parameters&quot;</span><span class="p">)</span>
+    <span class="p">):</span>
         <span class="k">return</span> <span class="n">function</span>
+    <span class="c1"># a JSON schema with title and description</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span>
+        <span class="n">k</span> <span class="ow">in</span> <span class="n">function</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="s2">&quot;properties&quot;</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="n">function</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">function</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="n">function</span><span class="p">,</span>
+        <span class="p">}</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Dict</span><span class="p">,</span> <span class="n">convert_pydantic_to_openai_function</span><span class="p">(</span><span class="n">function</span><span class="p">))</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">BaseTool</span><span class="p">):</span>
@@ -470,8 +484,10 @@
         <span class="k">return</span> <span class="n">convert_python_function_to_openai_function</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Unsupported function type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">function</span><span class="p">)</span><span class="si">}</span><span class="s2">. Functions must be passed in&quot;</span>
-            <span class="sa">f</span><span class="s2">&quot; as Dict, pydantic.BaseModel, or Callable.&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Unsupported function</span><span class="se">\n\n</span><span class="si">{</span><span class="n">function</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Functions must be passed in&quot;</span>
+            <span class="s2">&quot; as Dict, pydantic.BaseModel, or Callable. If they&#39;re a dict they must&quot;</span>
+            <span class="s2">&quot; either be in OpenAI function format or valid JSON schema with top-level&quot;</span>
+            <span class="s2">&quot; &#39;title&#39; and &#39;description&#39; keys.&quot;</span>
         <span class="p">)</span></div>
 
 
@@ -483,13 +499,14 @@
 <span class="sd">    Args:</span>
 <span class="sd">        tool: Either a dictionary, a pydantic.BaseModel class, Python function, or</span>
 <span class="sd">            BaseTool. If a dictionary is passed in, it is assumed to already be a valid</span>
-<span class="sd">            OpenAI tool or OpenAI function.</span>
+<span class="sd">            OpenAI tool, OpenAI function, or a JSON schema with top-level &#39;title&#39; and</span>
+<span class="sd">            &#39;description&#39; keys specified.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A dict version of the passed in tool which is compatible with the</span>
 <span class="sd">            OpenAI tool-calling API.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tool</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">tool</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tool</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">tool</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;function&quot;</span> <span class="ow">and</span> <span class="s2">&quot;function&quot;</span> <span class="ow">in</span> <span class="n">tool</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">tool</span>
     <span class="n">function</span> <span class="o">=</span> <span class="n">convert_to_openai_function</span><span class="p">(</span><span class="n">tool</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span> <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="n">function</span><span class="p">}</span></div>
@@ -499,7 +516,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 11, 2024.
+          Last updated on Mar 12, 2024.
       </footer>
     </div>
   </div>

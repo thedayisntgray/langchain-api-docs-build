@@ -232,16 +232,22 @@
 
 <span class="k">def</span> <span class="nf">_convert_dict_to_message</span><span class="p">(</span><span class="n">_dict</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">AIMessage</span><span class="p">:</span>
     <span class="n">content</span> <span class="o">=</span> <span class="n">_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;result&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">additional_kwargs</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">if</span> <span class="n">_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;function_call&quot;</span><span class="p">):</span>
         <span class="n">additional_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;function_call&quot;</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">_dict</span><span class="p">[</span><span class="s2">&quot;function_call&quot;</span><span class="p">])}</span>
         <span class="k">if</span> <span class="s2">&quot;thoughts&quot;</span> <span class="ow">in</span> <span class="n">additional_kwargs</span><span class="p">[</span><span class="s2">&quot;function_call&quot;</span><span class="p">]:</span>
             <span class="c1"># align to api sample, which affects the llm function_call output</span>
             <span class="n">additional_kwargs</span><span class="p">[</span><span class="s2">&quot;function_call&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;thoughts&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">additional_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">additional_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">,</span> <span class="p">{}),</span> <span class="o">**</span><span class="n">additional_kwargs</span><span class="p">}</span>
     <span class="k">return</span> <span class="n">AIMessage</span><span class="p">(</span>
         <span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">,</span>
-        <span class="n">additional_kwargs</span><span class="o">=</span><span class="p">{</span><span class="o">**</span><span class="n">_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">,</span> <span class="p">{}),</span> <span class="o">**</span><span class="n">additional_kwargs</span><span class="p">},</span>
+        <span class="n">additional_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="n">finish_reason</span><span class="o">=</span><span class="n">additional_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;finish_reason&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+            <span class="n">request_id</span><span class="o">=</span><span class="n">additional_kwargs</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+            <span class="nb">object</span><span class="o">=</span><span class="n">additional_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+            <span class="n">search_info</span><span class="o">=</span><span class="n">additional_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;search_info&quot;</span><span class="p">,</span> <span class="p">[]),</span>
+        <span class="p">),</span>
     <span class="p">)</span>
 
 
@@ -563,7 +569,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 11, 2024.
+          Last updated on Mar 12, 2024.
       </footer>
     </div>
   </div>

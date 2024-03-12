@@ -177,11 +177,13 @@
               <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_core.output_parsers.openai_tools</span></code>.JsonOutputToolsParser</a><ul>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser</span></code></a><ul>
+<li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.diff"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.diff</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.first_tool_only"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.first_tool_only</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.return_id"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.return_id</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.strict"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.strict</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.abatch"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.abatch()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.ainvoke"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.ainvoke()</span></code></a></li>
+<li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.aparse"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.aparse()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.aparse_result"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.aparse_result()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.assign"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.assign()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.astream"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.astream()</span></code></a></li>
@@ -197,6 +199,7 @@
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.copy"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.copy()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.dict"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.dict()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.from_orm"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.from_orm()</span></code></a></li>
+<li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.get_format_instructions"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.get_format_instructions()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.get_graph"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.get_graph()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.get_input_schema"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.get_input_schema()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.get_lc_namespace"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.get_lc_namespace()</span></code></a></li>
@@ -208,10 +211,12 @@
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.json"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.json()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.lc_id"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.lc_id()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.map"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.map()</span></code></a></li>
+<li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.parse()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse_file"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.parse_file()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse_obj"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.parse_obj()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse_raw"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.parse_raw()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse_result"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.parse_result()</span></code></a></li>
+<li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse_with_prompt"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.parse_with_prompt()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.pick"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.pick()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.pipe"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.pipe()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.schema"><code class="docutils literal notranslate"><span class="pre">JsonOutputToolsParser.schema()</span></code></a></li>
@@ -252,8 +257,15 @@
 <dl class="py class pydantic_model">
 <dt class="sig sig-object py" id="langchain_core.output_parsers.openai_tools.JsonOutputToolsParser">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_core.output_parsers.openai_tools.</span></span><span class="sig-name descname"><span class="pre">JsonOutputToolsParser</span></span><a class="reference internal" href="../_modules/langchain_core/output_parsers/openai_tools.html#JsonOutputToolsParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="langchain_core.output_parsers.base.BaseGenerationOutputParser.html#langchain_core.output_parsers.base.BaseGenerationOutputParser" title="langchain_core.output_parsers.base.BaseGenerationOutputParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseGenerationOutputParser</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]</p>
+<dd><p>Bases: <a class="reference internal" href="langchain_core.output_parsers.transform.BaseCumulativeTransformOutputParser.html#langchain_core.output_parsers.transform.BaseCumulativeTransformOutputParser" title="langchain_core.output_parsers.transform.BaseCumulativeTransformOutputParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCumulativeTransformOutputParser</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]</p>
 <p>Parse tools from OpenAI response.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.diff">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">diff</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.diff" title="Permalink to this definition">¶</a></dt>
+<dd><p>In streaming mode, whether to yield diffs between the previous and current
+parsed output, or just the current parsed output.</p>
+</dd></dl>
+
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.first_tool_only">
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">first_tool_only</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.first_tool_only" title="Permalink to this definition">¶</a></dt>
@@ -323,9 +335,30 @@ the runnable did not implement a native async version of invoke.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.aparse">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">aparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">T</span></span></span><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.aparse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a single string model output into some structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em>) – String output of a language model.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Structured output.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>T</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.aparse_result">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">aparse_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../outputs/langchain_core.outputs.generation.Generation.html#langchain_core.outputs.generation.Generation" title="langchain_core.outputs.generation.Generation"><span class="pre">Generation</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">T</span></span></span><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.aparse_result" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse a list of candidate model Generations into a specific format.</p>
+<dl class="simple">
+<dt>The return value is parsed from only the first Generation in the result, which</dt><dd><p>is assumed to be the highest-likelihood Generation.</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -657,20 +690,20 @@ step, and the final state of the run.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.atransform">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">atransform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AsyncIterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Input</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../runnables/langchain_core.runnables.config.RunnableConfig.html#langchain_core.runnables.config.RunnableConfig" title="langchain_core.runnables.config.RunnableConfig"><span class="pre">RunnableConfig</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AsyncIterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Output</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.atransform" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">atransform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AsyncIterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../messages/langchain_core.messages.base.BaseMessage.html#langchain_core.messages.base.BaseMessage" title="langchain_core.messages.base.BaseMessage"><span class="pre">BaseMessage</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../runnables/langchain_core.runnables.config.RunnableConfig.html#langchain_core.runnables.config.RunnableConfig" title="langchain_core.runnables.config.RunnableConfig"><span class="pre">RunnableConfig</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AsyncIterator</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.atransform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default implementation of atransform, which buffers input and calls astream.
 Subclasses should override this method if they can start producing output while
 input is still being generated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>input</strong> (<em>AsyncIterator</em><em>[</em><em>Input</em><em>]</em>) – </p></li>
+<li><p><strong>input</strong> (<em>AsyncIterator</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="../messages/langchain_core.messages.base.BaseMessage.html#langchain_core.messages.base.BaseMessage" title="langchain_core.messages.base.BaseMessage"><em>BaseMessage</em></a><em>]</em><em>]</em>) – </p></li>
 <li><p><strong>config</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../runnables/langchain_core.runnables.config.RunnableConfig.html#langchain_core.runnables.config.RunnableConfig" title="langchain_core.runnables.config.RunnableConfig"><em>RunnableConfig</em></a><em>]</em>) – </p></li>
-<li><p><strong>kwargs</strong> (<em>Optional</em><em>[</em><em>Any</em><em>]</em>) – </p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><em>AsyncIterator</em>[<em>Output</em>]</p>
+<dd class="field-even"><p>AsyncIterator[T]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -806,22 +839,14 @@ the new model: you should trust this data</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.dict">
-<span class="sig-name descname"><span class="pre">dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_alias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_defaults</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_unset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_defaults</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_none</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DictStrAny</span></span></span><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.dict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.</p>
+<span class="sig-name descname"><span class="pre">dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return dictionary representation of output parser.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>include</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>AbstractSetIntStr</em><em>, </em><em>MappingIntStrAny</em><em>]</em><em>]</em>) – </p></li>
-<li><p><strong>exclude</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>AbstractSetIntStr</em><em>, </em><em>MappingIntStrAny</em><em>]</em><em>]</em>) – </p></li>
-<li><p><strong>by_alias</strong> (<em>bool</em>) – </p></li>
-<li><p><strong>skip_defaults</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em>) – </p></li>
-<li><p><strong>exclude_unset</strong> (<em>bool</em>) – </p></li>
-<li><p><strong>exclude_defaults</strong> (<em>bool</em>) – </p></li>
-<li><p><strong>exclude_none</strong> (<em>bool</em>) – </p></li>
-</ul>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>Any</em>) – </p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>DictStrAny</p>
+<dd class="field-even"><p><em>Dict</em></p>
 </dd>
 </dl>
 </dd></dl>
@@ -835,6 +860,17 @@ the new model: you should trust this data</p></li>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>Model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.get_format_instructions">
+<span class="sig-name descname"><span class="pre">get_format_instructions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.get_format_instructions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instructions on how the LLM output should be formatted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1025,6 +1061,23 @@ by calling invoke() with each input.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse">
+<span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../_modules/langchain_core/output_parsers/openai_tools.html#JsonOutputToolsParser.parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a single string model output into some structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em>) – String output of a language model.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Structured output.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>Any</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse_file">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">unicode</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">unicode</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Protocol</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_pickle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse_file" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -1079,6 +1132,10 @@ by calling invoke() with each input.</p>
 <dt class="sig sig-object py" id="langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse_result">
 <span class="sig-name descname"><span class="pre">parse_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../outputs/langchain_core.outputs.generation.Generation.html#langchain_core.outputs.generation.Generation" title="langchain_core.outputs.generation.Generation"><span class="pre">Generation</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../_modules/langchain_core/output_parsers/openai_tools.html#JsonOutputToolsParser.parse_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse_result" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse a list of candidate model Generations into a specific format.</p>
+<dl class="simple">
+<dt>The return value is parsed from only the first Generation in the result, which</dt><dd><p>is assumed to be the highest-likelihood Generation.</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1092,6 +1149,29 @@ to be different candidate outputs for a single model input.</p></li>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><em>Any</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse_with_prompt">
+<span class="sig-name descname"><span class="pre">parse_with_prompt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">completion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../prompt_values/langchain_core.prompt_values.PromptValue.html#langchain_core.prompt_values.PromptValue" title="langchain_core.prompt_values.PromptValue"><span class="pre">PromptValue</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.parse_with_prompt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the output of an LLM call with the input prompt for context.</p>
+<p>The prompt is largely provided in the event the OutputParser wants
+to retry or fix the output in some way, and needs information from
+the prompt to do so.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>completion</strong> (<em>str</em>) – String output of a language model.</p></li>
+<li><p><strong>prompt</strong> (<a class="reference internal" href="../prompt_values/langchain_core.prompt_values.PromptValue.html#langchain_core.prompt_values.PromptValue" title="langchain_core.prompt_values.PromptValue"><em>PromptValue</em></a>) – Input PromptValue.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Structured output</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Any</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1203,20 +1283,20 @@ Subclasses should override this method if they support streaming output.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.transform">
-<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Input</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../runnables/langchain_core.runnables.config.RunnableConfig.html#langchain_core.runnables.config.RunnableConfig" title="langchain_core.runnables.config.RunnableConfig"><span class="pre">RunnableConfig</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Output</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.transform" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../messages/langchain_core.messages.base.BaseMessage.html#langchain_core.messages.base.BaseMessage" title="langchain_core.messages.base.BaseMessage"><span class="pre">BaseMessage</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../runnables/langchain_core.runnables.config.RunnableConfig.html#langchain_core.runnables.config.RunnableConfig" title="langchain_core.runnables.config.RunnableConfig"><span class="pre">RunnableConfig</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#langchain_core.output_parsers.openai_tools.JsonOutputToolsParser.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default implementation of transform, which buffers input and then calls stream.
 Subclasses should override this method if they can start producing output while
 input is still being generated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>input</strong> (<em>Iterator</em><em>[</em><em>Input</em><em>]</em>) – </p></li>
+<li><p><strong>input</strong> (<em>Iterator</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="../messages/langchain_core.messages.base.BaseMessage.html#langchain_core.messages.base.BaseMessage" title="langchain_core.messages.base.BaseMessage"><em>BaseMessage</em></a><em>]</em><em>]</em>) – </p></li>
 <li><p><strong>config</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../runnables/langchain_core.runnables.config.RunnableConfig.html#langchain_core.runnables.config.RunnableConfig" title="langchain_core.runnables.config.RunnableConfig"><em>RunnableConfig</em></a><em>]</em>) – </p></li>
-<li><p><strong>kwargs</strong> (<em>Optional</em><em>[</em><em>Any</em><em>]</em>) – </p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><em>Iterator</em>[<em>Output</em>]</p>
+<dd class="field-even"><p>Iterator[T]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1417,7 +1497,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 11, 2024.
+          Last updated on Mar 12, 2024.
       </footer>
     </div>
   </div>

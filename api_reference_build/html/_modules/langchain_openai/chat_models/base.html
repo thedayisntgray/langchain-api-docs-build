@@ -981,7 +981,8 @@
 <span class="sd">                the model output will be a dict. With a Pydantic class the returned</span>
 <span class="sd">                attributes will be validated, whereas with a dict they will not be. If</span>
 <span class="sd">                `method` is &quot;function_calling&quot; and `schema` is a dict, then the dict</span>
-<span class="sd">                must match the OpenAI function-calling spec.</span>
+<span class="sd">                must match the OpenAI function-calling spec or be a valid JSON schema</span>
+<span class="sd">                with top level &#39;title&#39; and &#39;description&#39; keys specified.</span>
 <span class="sd">            method: The method for steering model generation, either &quot;function_calling&quot;</span>
 <span class="sd">                or &quot;json_mode&quot;. If &quot;function_calling&quot; then the schema will be converted</span>
 <span class="sd">                to an OpenAI function and the returned model will make use of the</span>
@@ -1179,7 +1180,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 11, 2024.
+          Last updated on Mar 12, 2024.
       </footer>
     </div>
   </div>
