@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_elasticsearch.retrievers.ElasticsearchRetriever &mdash; 🦜🔗 LangChain 0.1.11</title>
+  <title>langchain_elasticsearch.retrievers.ElasticsearchRetriever &mdash; 🦜🔗 LangChain 0.1.12</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/retrievers/langchain_elasticsearch.retrievers.ElasticsearchRetriever.html" />
 
@@ -266,8 +266,9 @@
 <cite>from_es_params</cite> method with parameters to initialize the client.</p></li>
 <li><p><strong>index_name</strong> – The name of the index to query.</p></li>
 <li><p><strong>body_func</strong> – Function to create an Elasticsearch DSL query body from a search
-string. All parameters (including for example the <cite>size</cite> parameter to limit
-the number of results) must also be set in the body.</p></li>
+string. The returned query body must fit what you would normally send in a
+POST request the the _search endpoint. If applicable, it also includes
+parameters the <cite>size</cite> parameter etc.</p></li>
 <li><p><strong>content_field</strong> – The document field name that contains the page content.</p></li>
 <li><p><strong>document_mapper</strong> – Function to map Elasticsearch hits to LangChain Documents.</p></li>
 </ul>
@@ -1507,7 +1508,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 12, 2024.
+          Last updated on Mar 13, 2024.
       </footer>
     </div>
   </div>
