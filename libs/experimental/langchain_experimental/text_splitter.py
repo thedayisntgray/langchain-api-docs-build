@@ -100,7 +100,7 @@ class SemanticChunker(BaseDocumentTransformer):
     All credits to him.
 
     At a high level, this splits into sentences, then groups into groups of 3
-    sentences, and then merges one that are similar in the embedding space.
+    sentences, and then merges one that is similar in the embedding space.
     """
 
     def __init__(
